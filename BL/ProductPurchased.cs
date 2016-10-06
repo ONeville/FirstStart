@@ -9,8 +9,8 @@ namespace BL
     public class ProductPurchased : ITaxCalculation
     {
         public List<ProductItem> Item { get; set; }
-        public double ImportTax { get; set; }
-        public double ExemptTax { get; set; }
+        private double ImportTax { get; set; }
+        private double BasisTax { get; set; }
 
         public double TotalAmount { get; set; }
         public double TotalTaxAmount { get; set; }
@@ -21,26 +21,33 @@ namespace BL
 
         public ProductPurchased()
         {
-            this.ImportTax = 0.1;
-            this.ExemptTax = 0.05;
+            ImportTax = 0.05;
+            BasisTax = 0.1;
         }
 
-        public ProductPurchased(double importTax, double exemptTax)
+        public ProductPurchased(double importTax, double basisTax)
         {
-            this.ImportTax = importTax;
-            this.ExemptTax = exemptTax;
+            ImportTax = importTax;
+            BasisTax = basisTax;
         }
 
         public ProductItem CalculatePriceWithTax(ProductItem item)
         {
-            if (item.IsImported)
+            if (item.IsImported && !item.IsExempted)
             {
-                item.ProductPriceWithTax = item.ProductPrice * this.ImportTax;
+                item.ProductPriceWithTax = (ImportTax + BasisTax) * item.ProductPrice;
             }
-
-            if (item.IsExempted)
+            else if (item.IsImported && item.IsExempted)
             {
-                item.ProductPriceWithTax = item.ProductPrice * this.ExemptTax;
+                item.ProductPriceWithTax = item.ProductPrice * ImportTax;
+            }
+            else if (!item.IsImported && !item.IsExempted)
+            {
+                item.ProductPriceWithTax = item.ProductPrice * BasisTax;
+            }
+            else
+            {
+                item.ProductPriceWithTax = item.ProductPrice;
             }
 
             return item;
@@ -63,13 +70,13 @@ namespace BL
             return priceWithTax;
         }
 
-        public ProductPurchased GetPurchases(List<ProductItem> items, double importTax, double exemptTax)
+        public ProductPurchased GetPurchases(List<ProductItem> items, double importTax, double basisTax)
         {
             ProductPurchased result;
 
-            if (importTax > 0 && exemptTax > 0)
+            if (importTax > 0 && basisTax > 0)
             {
-                result = new ProductPurchased(importTax, exemptTax);
+                result = new ProductPurchased(importTax, basisTax);
             }
             else
             {

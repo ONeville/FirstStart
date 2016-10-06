@@ -6,3 +6,6 @@ c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\SalesTax
 c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\SalesTaxes\obj\Debug\SalesTaxes.pdb
 c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\SalesTaxes\bin\Debug\BL.dll
 c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\SalesTaxes\bin\Debug\BL.pdb
+D:\Web Dev\Manu\SalesTaxes\bin\Debug\SalesTaxes.exe.config
+D:\Web Dev\Manu\SalesTaxes\obj\Debug\SalesTaxes.exe
+D:\Web Dev\Manu\SalesTaxes\obj\Debug\SalesTaxes.pdb

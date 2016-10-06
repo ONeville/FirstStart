@@ -1,0 +1,5 @@
+c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\BL\bin\Debug\BL.dll
+c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\BL\bin\Debug\BL.pdb
+c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\BL\obj\Debug\BL.dll
+c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\BL\obj\Debug\BL.pdb
+c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\BL\obj\Debug\BL.csprojResolveAssemblyReference.cache

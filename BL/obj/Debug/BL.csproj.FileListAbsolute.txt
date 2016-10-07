@@ -3,3 +3,8 @@ c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\BL\bin\D
 c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\BL\obj\Debug\BL.dll
 c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\BL\obj\Debug\BL.pdb
 c:\users\neville.mbuyi\documents\visual studio 2013\Projects\SalesTaxes\BL\obj\Debug\BL.csprojResolveAssemblyReference.cache
+D:\Web Dev\Manu\BL\bin\Debug\BL.dll
+D:\Web Dev\Manu\BL\bin\Debug\BL.pdb
+D:\Web Dev\Manu\BL\obj\Debug\BL.csprojResolveAssemblyReference.cache
+D:\Web Dev\Manu\BL\obj\Debug\BL.dll
+D:\Web Dev\Manu\BL\obj\Debug\BL.pdb

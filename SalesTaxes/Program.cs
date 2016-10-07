@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BL;
 
 namespace SalesTaxes
@@ -14,6 +11,14 @@ namespace SalesTaxes
 
             ProductPurchased saleTaxe = new ProductPurchased();
 
+            //Test in case of helping user to set his own rates 
+            //on Import and Exempt tax
+            //ProductPurchased saleTaxe = new ProductPurchased(0.15, 0.08);
+            
+            //Test in case of helping user to set his own rates 
+            //on Import, Exempt tax and Round up rate
+            //ProductPurchased saleTaxe = new ProductPurchased(0.05, 0.1, 0.06);
+
             saleTaxe = saleTaxe.GetPurchases(GetEntryData());
 
             PrintReciept(saleTaxe);
@@ -21,11 +26,23 @@ namespace SalesTaxes
             Console.ReadLine();
         }
 
-
-        static bool ValidateNumeric(string value)
+        static bool ValidateNumeric(string value, string dataType)
         {
-            int number;
-            return int.TryParse(value, out number);
+            bool typeFlag = false;
+
+            if (dataType.Equals("number"))
+            {
+                int number;
+                typeFlag = int.TryParse(value, out number);
+            }
+            
+            if (dataType.Equals("amount"))
+            {
+                double number;
+                typeFlag = double.TryParse(value, out number);
+            }
+
+            return typeFlag;
         }
 
         static List<ProductItem> GetEntryData()
@@ -41,25 +58,25 @@ namespace SalesTaxes
                 ProductItem product = new ProductItem();
 
                 Console.WriteLine("Item " + countItem + " > enter Quantity: ");
-                product.ProductQuantity = Int32.Parse(Console.ReadLine());
+                product.ProductQuantity = Int32.Parse(GetEntryData(Console.ReadLine(), "number"));
 
                 Console.WriteLine("Item " + countItem + " > enter Product Name: ");
-                product.ProductName = Console.ReadLine();
+                product.ProductName = GetEntryData(Console.ReadLine(), "text");
 
                 Console.WriteLine("Item " + countItem + " > enter Price: ");
-                product.ProductPrice = Double.Parse(Console.ReadLine());
+                product.ProductPrice = Double.Parse(GetEntryData(Console.ReadLine(), "amount"));
 
                 Console.WriteLine("Item " + countItem + " > is this product imported [y/n] ? ");
-                product.ImportProduct = Console.ReadLine();
+                product.ImportProduct = GetEntryData(Console.ReadLine(), "text");
 
                 Console.WriteLine("Item " + countItem + " > is this product exempted [y/n] ?");
-                product.ExemptProduct = Console.ReadLine();
+                product.ExemptProduct = GetEntryData(Console.ReadLine(), "text");
 
                 itemList.Add(product);
                 countItem++;
 
                 Console.WriteLine("Do you have more Items [y/n]: ");
-                input = Console.ReadLine();
+                input = GetEntryData(Console.ReadLine(), "text");
                 if (input.ToLower().Equals("n"))
                 {
                     break;
@@ -68,54 +85,64 @@ namespace SalesTaxes
 
             return itemList;
         }
-        
-        static ProductItem GetEntryData(ProductItem item)
+
+        static string GetEntryData(string dataEntry, string dataType)
         {
-            Console.WriteLine(" enter the quantity: ");
-
-            string inputText = Console.ReadLine();
-
             bool checkEntry = false;
-
+            string errorMessage = null;
             do
             {
                 checkEntry = true;
-                
-                if (string.IsNullOrEmpty(inputText))
+
+                if (string.IsNullOrEmpty(dataEntry))
                 {
                     checkEntry = false;
+                    errorMessage = "This field require entry!";
                 }
-                else if (!ValidateNumeric(inputText))
+                else if (!dataType.Equals("text"))
                 {
-                    checkEntry = false;
+                    if (!ValidateNumeric(dataEntry, dataType))
+                    {
+                        checkEntry = false;
+                        errorMessage = "This field require a number!";
+                    }
                 }
+
 
                 if (!checkEntry)
                 {
-                    Console.WriteLine("This field require a number!");
-                    Console.WriteLine("Please! Enter the quantity: ");
-                    inputText = Console.ReadLine();
+                    Console.WriteLine(errorMessage + " Please! try again : ");
+                    dataEntry = Console.ReadLine();
                 }
 
             } while (!checkEntry);
 
-            item.ProductQuantity = Int32.Parse(inputText);
-
-            return item;
+            return dataEntry;
         }
-
+        
         static void PrintReciept(ProductPurchased purchase)
         {
-            foreach (ProductItem item in purchase.Item)
+            Console.WriteLine("__________________________________");
+            foreach (ProductItem item in purchase.ItemGrouped)
             {
-                Console.WriteLine("__________________________________");
-                Console.WriteLine(item.ProductName + " : " + item.ProductPriceWithTax);
+                if (item.ProductQuantity > 1)
+                {
+                    Console.WriteLine(item.ProductName + " : " + item.ProductPriceWithTax +
+                        " (" + item.ProductQuantity + " @ " + 
+                        (item.ProductPriceWithTax / item.ProductQuantity) + ")");
+                }
+                else
+                {
+                    Console.WriteLine(item.ProductName + " : " + item.ProductPriceWithTax); 
+                }
+
                 Console.WriteLine("__________________________________");
             }
 
-            Console.WriteLine("Total amount: " + purchase.TotalAmount);
-            Console.WriteLine("Sales Taxes: " + purchase.TotalTaxAmount);
-            Console.WriteLine("Sales Taxes round off: " + purchase.TotalTaxAmountRoundOff);
+            //Console.WriteLine("Total amount: " + purchase.TotalAmount);
+            //Console.WriteLine("Sales Taxes: " + purchase.TotalTaxAmount);
+            //Console.WriteLine("Sales Taxes round off: " + purchase.TotalTaxAmountRoundOff);
+            Console.WriteLine("Sales Taxes: " + purchase.TotalTaxAmountRoundOff);
             Console.WriteLine("Total: " + purchase.GrandTotal);
         }
     }

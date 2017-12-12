@@ -1,0 +1,62 @@
+<nav class="nav jumbtron">
+  <a class="nav-link active" href="#">Active</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link disabled" href="#">Disabled</a>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <p>Side A</p>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col"></th>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">First Name</th>
+            <th scope="col">Asset</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of people | groupby:'gender'">
+            <tr>
+                <th scope="row">
+                  <button *ngIf="item.value.length == 1">-</button>
+                  <button *ngIf="item.value.length > 1">+</button>
+                </th>
+                <th colspan="2">{{item.key}}</th>
+                <th class="grouped">{{item.summary}}</th>
+            </tr>
+          <tr *ngFor="let person of item.value">
+            <td></td>
+            <td>{{person.name}}</td>
+            <td>{{person.asset}}</td>
+            <td>{{person.details}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <p>Side B</p>
+    </div>
+  </div>
+</div>
+
+            <!-- {{ item.key }} has {{ item.value.length }} -->
+            <!-- 
+              (click)=""
+              <tr>
+                  <th colspan="2">Monthly Savings</th>
+                </tr>
+                <tr>
+                  <td>January</td>
+                  <td>$100</td>
+                </tr>
+
+             -->
+            <!-- <th scope="row">
+              <button *ngIf="person.haschildren === 0" (click)="person.haschildren = 1">-</button>
+              <button *ngIf="person.haschildren === 1" (click)="person.haschildren = 0">+</button>
+            </th>
+            <th scope="row">1</th> -->

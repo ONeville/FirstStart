@@ -26,12 +26,11 @@ export class GroupByPipe implements PipeTransform {
       return prev;
     }, {});
     return Object.keys(groupedObj)
-      .map(key => ({ key, summary: 0, value: groupedObj[key] }))
-      .reduce((item) => {
-
-        item.summary = item.value.reduce(function (a, b) { return a + b.asset; }, 0);        
-        return item;
-      });
+      .map(key => ({ 
+        key, 
+        expanded: false,
+        summary: groupedObj[key].reduce(function (a, b) { return a + b.asset; }, 0), 
+        value: groupedObj[key] }));
   }
 
 

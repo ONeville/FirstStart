@@ -10,8 +10,29 @@ import { GroupByPipe } from './groupby.pipe';
 export class AppComponent {
   title = 'app';
   people : any[] = [
-    {name: "Bob", gender: "Male", details: "d vestibulum scelerisque", asset: 1500 },
-    {name: "Jane", gender: "Female", details: "vestibulum posuere. Ut non purus", asset: 2010  },
-    {name: "Bill", gender: "Male", details: "Quisque rhoncus scelerisque", asset: 5000 }
+    { id: 1, name: "Bob", gender: "Male", details: "d vestibulum scelerisque", asset: 1500 },
+    { id: 2, name: "Jane", gender: "Female", details: "vestibulum posuere. Ut non purus", asset: 2010  },
+    { id: 3, name: "Bill", gender: "Male", details: "Quisque rhoncus scelerisque", asset: 5000 }
   ];
+  peopleSelected : any = {};
+
+getTemplate(person) {
+    if (person.id === this.peopleSelected.id) return 'edit';
+    else return 'display';
+};
+
+editTemplate(person) {
+  console.log("Saving contact");
+  this.peopleSelected = person;
+};
+
+saveTemplate (idx) {
+    console.log("Saving contact");
+    this.people[idx] = this.peopleSelected;
+    this.reset();
+};
+
+reset () {
+  this.peopleSelected = {};
+};
 }

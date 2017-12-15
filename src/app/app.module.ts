@@ -4,11 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GroupByPipe } from './groupby.pipe';
 
+import { LedgerItemsComponent, LedgerItemComponent } from './views';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    GroupByPipe
+    GroupByPipe,
+    LedgerItemsComponent,
+    LedgerItemComponent
   ],
   imports: [
     BrowserModule

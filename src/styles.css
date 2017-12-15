@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.credit-amount{
+    color: red;
+}
+.debit-amount{
+    color: green;
+}
+
+.grouped{
+    text-align: right;
+}

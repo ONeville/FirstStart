@@ -23,7 +23,7 @@ export class LedgerItemComponent implements OnInit {
 
   onEdit(ledger){
     this.isEdit = true;
-    this.itemSelected = ledger;
+    //this.itemSelected = ledger;
   }
 
 onSave(ledger, actualAmount, memo) {

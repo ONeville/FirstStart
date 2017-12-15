@@ -45,9 +45,15 @@
     </button>
   </div>
   <div class="modal-body">
-    <ul>
-      <li>Hello world</li>
-    </ul>
+      <h3>Cool - Hello world</h3>
+      <p>account : {{ledger.account}}</p>
+      <p>category : {{ledger.category}}</p>
+      <p>item : {{ledger.item}}</p>
+      <p>projectedAmount : {{ledger.projectedAmount}}</p>
+      <p>actualAmount : {{ledger.actualAmount}}</p>
+      <p>periodicity : {{ledger.periodicity}}</p>
+      
+      <p>memo : {{ledger.memo}}</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>

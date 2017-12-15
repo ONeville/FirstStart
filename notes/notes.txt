@@ -1,5 +1,5 @@
 "../node_modules/bootstrap/dist/js/bootstrap.min.js"
 
-
+npm install ngx-bootstrap --save
 
 https://codecraft.tv/

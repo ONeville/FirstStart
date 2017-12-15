@@ -1,9 +1,9 @@
 <div class="alert alert-primary" role="alert">
-    <a (click)="expended=!expended" class="bt-control">
+    <a (click)="onExpend()" class="bt-control">
         <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
     </a>
-    <a (click)="create()" class="bt-control">
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    <a (click)="onCollapse()" class="bt-control">
+        <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
     </a>
   </div>
 <table class="table">
@@ -28,6 +28,9 @@
         <a *ngIf="!item.expanded" (click)="item.expanded=!item.expanded">
           <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
         </a>
+        <a (click)="editLedger()" class="bt-tb">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </a>
       </th>
       <th colspan="4">{{item.key}}</th>
       <th class="grouped debit-amount">{{item.totalProjected | currency:"$":0}}</th>
@@ -45,19 +48,22 @@
         <td>{{ledger.periodicity}}</td>
         <td class="grouped debit-amount">{{ledger.projectedAmount | currency:"$":0}}</td>
         <td class="grouped credit-amount">{{ledger.actualAmount | currency:"$":0}}</td>
-        <td *ngIf="isEdit && itemSelected.id == ledger.id" class="grouped credit-amount"><input type="text" class="input-amount" #ledgerActualAmount></td>
+        <!-- <td *ngIf="isEdit && itemSelected.id == ledger.id" class="grouped credit-amount"><input type="text" class="input-amount" #ledgerActualAmount></td> -->
         <td>{{ledger.memo}}</td>
-        <td *ngIf="isEdit && itemSelected.id == ledger.id"><input type="text" #ledgerMemo></td>
+        <!-- <td *ngIf="isEdit && itemSelected.id == ledger.id"><input type="text" #ledgerMemo></td> -->
         <td>
-          <a *ngIf="!isEdit" (click)="onEdit(ledger)">
+          <a (click)="editLedger(ledger)">
             <i class="fa fa-pencil-square" aria-hidden="true"></i>
           </a>
-          <a *ngIf="isEdit && itemSelected.id == ledger.id" (click)="onSave(ledger, ledgerActualAmount.value, ledgerMemo.value)">
+          <a (click)="editLedger(ledger)" class="credit-amount">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </a>
+          <!-- <a *ngIf="isEdit && itemSelected.id == ledger.id" (click)="onSave(ledger, ledgerActualAmount.value, ledgerMemo.value)">
             <i class="fa fa-floppy-o" aria-hidden="true"></i>
           </a>
           <a *ngIf="isEdit && itemSelected.id == ledger.id" (click)="reset()">
             <i class="fa fa-repeat" aria-hidden="true"></i>
-          </a>
+          </a> -->
         </td>
       </tr>
     </ng-container>

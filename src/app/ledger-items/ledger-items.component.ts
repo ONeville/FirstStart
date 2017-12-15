@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
 import { Ledger } from '../models';
+import { LedgerItemComponent } from '../ledger-item/ledger-item.component';
 
 @Component({
   selector: 'app-ledger-items',
   templateUrl: './ledger-items.component.html',
-  styleUrls: ['./ledger-items.component.css'],
-  encapsulation: ViewEncapsulation.None 
+  styleUrls: ['./ledger-items.component.css']
 })
 export class LedgerItemsComponent implements OnInit {
   itemSelected: Ledger = {
@@ -18,9 +20,12 @@ export class LedgerItemsComponent implements OnInit {
     periodicity: '',
     memo: ''
   };
+  bsModalRef: BsModalRef;
   isEdit: boolean = false;
   expended: boolean = true;
-  constructor() { }
+  exText:string = `<i class="fa fa-caret-square-o-right" aria-hidden="true"></i>`;
+  collText:string = `<i class="fa fa-caret-square-o-down" aria-hidden="true"></i>`;
+  constructor(private modalService: BsModalService) { }
 
   ngOnInit() {
   }
@@ -38,9 +43,25 @@ export class LedgerItemsComponent implements OnInit {
     this.reset();
   };
 
-  create(){
-
+  onExpend(){
+    this.expended = true;
   }
+  onCollapse(){
+    this.expended = false;
+  }
+  // public openModal(template: TemplateRef<any>) {
+  //   this.bsModalRef = this.modalService.show(template, { animated: true, keyboard: true, backdrop: true, ignoreBackdropClick: true });
+  // }
+
+  editLedger(ledger?){
+    this.bsModalRef = this.modalService.show(LedgerItemComponent, { animated: true, keyboard: true, backdrop: true, ignoreBackdropClick: true });
+    this.bsModalRef.content.title = 'Add a Transaction';
+    if (ledger) {
+      this.bsModalRef.content.title = 'Edit a Ledger Transaction';
+      this.bsModalRef.content.ledger = ledger;
+    }
+  }
+
 
 reset() {
   this.isEdit = false;
@@ -83,3 +104,4 @@ reset() {
     memo: ''
   }];
 }
+

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input  } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Ledger } from '../models';
 
 @Component({
@@ -11,7 +12,11 @@ export class LedgerItemComponent implements OnInit {
   ledger: Ledger;
   itemSelected: Ledger = null;
   isEdit: boolean = false;
-  constructor() { }
+  modalRef: BsModalRef;
+  constructor(public bsModalRef: BsModalRef) { 
+    this.modalRef = bsModalRef;
+    console.log("Init Item component");
+  }
 
   ngOnInit() {
   }

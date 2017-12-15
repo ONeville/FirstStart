@@ -1,12 +1,10 @@
-<form [FormGroup]="ledgerForm" (ngSubmit)="save(ledgerForm.value)">
+<!-- <form [FormGroup]="ledgerForm" (ngSubmit)="save(ledgerForm.value)">
 
 
     <div class="row">
-        <!-- Grid column -->
         <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <!-- Form contact -->
                     <form>
                         <h2 class="text-center py-4 font-bold font-up danger-text">Contact us</h2>
                         <div class="md-form">
@@ -34,14 +32,26 @@
                             <button class="btn btn-outline-danger btn-lg">cancel</button>
                         </div>
                     </form>
-                    <!-- Form contact -->
                 </div>
             </div>
         </div>
     </div>
-</form>
+</form> -->
 
-
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul>
+      <li>Hello world</li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+  </div>
 
 
 

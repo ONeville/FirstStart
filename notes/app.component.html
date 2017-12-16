@@ -1,18 +1,131 @@
-<div *ngIf="ledger">
-    <h3>Cool - Hello world</h3>
-    <p>account : {{ledger.account}}</p>
-    <p>category : {{ledger.category}}</p>
-    <p>item : {{ledger.item}}</p>
-    <p>projectedAmount : {{ledger.projectedAmount}}</p>
-    <p>actualAmount : {{ledger.actualAmount}}</p>
-    <p>periodicity : {{ledger.periodicity}}</p>
+<modal-container class="modal fade show" role="dialog" tabindex="-1" >
+    <div role="document" class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <app-ledger-item _nghost-c2=""><div _ngcontent-c2="" class="modal-dialog modal-lg">
+    <form _ngcontent-c2="" novalidate="" ng-reflect-form="[object Object]" class="ng-untouched ng-pristine ng-valid">
+  <div _ngcontent-c2="" class="modal-header modal-header-sm">
+    <h4 _ngcontent-c2="" class="modal-title modal-title-sm pull-left">Add a new Ledger Transaction</h4>
+    <button _ngcontent-c2="" aria-label="Close" class="close pull-right" type="button">
+      <span _ngcontent-c2="" aria-hidden="true">×</span>
+    </button>
+  </div>
 
-    <p>memo : {{ledger.memo}}</p>
-</div>
+    <div _ngcontent-c2="" class="modal-body">
+      <div _ngcontent-c2="" class="form-group row">
+        <label _ngcontent-c2="" class="col-4 col-form-label" for="account">Free text</label>
+        <div _ngcontent-c2="" class="col-5">
+          <input _ngcontent-c2="" class="form-control form-control-sm ng-untouched ng-pristine ng-valid" formcontrolname="test" required="" type="text" ng-reflect-required="" ng-reflect-name="test">
 
-
-<!-- <form [FormGroup]="ledgerForm" (ngSubmit)="save(ledgerForm.value)">
-
-
- 
-</form> -->
+          <!--bindings={
+  "ng-reflect-ng-if": "false"
+}-->
+        </div>
+      </div>
+      <div _ngcontent-c2="" class="form-group row">
+        <label _ngcontent-c2="" class="col-4 col-form-label" for="account">Account</label>
+        <div _ngcontent-c2="" class="col-5">
+            <select _ngcontent-c2="" class="form-control form-control-sm ng-untouched ng-pristine ng-valid" formcontrolname="account" ng-reflect-name="account">
+                <option _ngcontent-c2="" value="" ng-reflect-value="">Please select an Account</option>
+                <!--bindings={
+  "ng-reflect-ng-for-of": "Checking - Ariel,Checking - Bl"
+}--><option _ngcontent-c2="" value="Checking - Ariel" ng-reflect-value="Checking - Ariel"> 
+                        Checking - Ariel 
+                </option><option _ngcontent-c2="" value="Checking - Blaise" ng-reflect-value="Checking - Blaise"> 
+                        Checking - Blaise 
+                </option><option _ngcontent-c2="" value="Credit Card - Ariel" ng-reflect-value="Credit Card - Ariel"> 
+                        Credit Card - Ariel 
+                </option>
+              </select>
+        </div>
+      </div>
+      <div _ngcontent-c2="" class="form-group form-group-sm row">
+        <label _ngcontent-c2="" class="col-4 col-form-label" for="ledgerCategory">Category</label>
+        <div _ngcontent-c2="" class="col-5">
+            <select _ngcontent-c2="" class="form-control form-control-sm ng-untouched ng-pristine ng-valid" formcontrolname="category" ng-reflect-name="category">
+                <option _ngcontent-c2="" value="" ng-reflect-value="">Please select a Category</option>
+                <!--bindings={
+  "ng-reflect-ng-for-of": "Housing,Transportation,Entaite"
+}--><option _ngcontent-c2="" value="Housing" ng-reflect-value="Housing"> 
+                        Housing 
+                </option><option _ngcontent-c2="" value="Transportation" ng-reflect-value="Transportation"> 
+                        Transportation 
+                </option><option _ngcontent-c2="" value="Entaitement" ng-reflect-value="Entaitement"> 
+                        Entaitement 
+                </option>
+              </select>
+        </div>
+      </div>
+      <div _ngcontent-c2="" class="form-group form-group-sm row">
+        <label _ngcontent-c2="" class="col-4 col-form-label" for="ledgerItem">Item</label>
+        <div _ngcontent-c2="" class="col-5">
+            <select _ngcontent-c2="" class="form-control form-control-sm ng-untouched ng-pristine ng-valid" formcontrolname="item" ng-reflect-name="item">
+                <option _ngcontent-c2="" value="" ng-reflect-value="">Please select an Item</option>
+                <!--bindings={
+  "ng-reflect-ng-for-of": "Internet,Movies,Foods,Telepone"
+}--><option _ngcontent-c2="" value="Internet" ng-reflect-value="Internet"> 
+                        Internet 
+                </option><option _ngcontent-c2="" value="Movies" ng-reflect-value="Movies"> 
+                        Movies 
+                </option><option _ngcontent-c2="" value="Foods" ng-reflect-value="Foods"> 
+                        Foods 
+                </option><option _ngcontent-c2="" value="Telepone" ng-reflect-value="Telepone"> 
+                        Telepone 
+                </option><option _ngcontent-c2="" value="Tither" ng-reflect-value="Tither"> 
+                        Tither 
+                </option>
+              </select>
+        </div>
+      </div>
+      <div _ngcontent-c2="" class="form-group form-group-sm row">
+        <label _ngcontent-c2="" class="col-4 col-form-label" for="ledgerPeriodicity">Periodicity</label>
+        <div _ngcontent-c2="" class="col-5">
+            <select _ngcontent-c2="" class="form-control form-control-sm ng-untouched ng-pristine ng-valid" formcontrolname="periodicity" ng-reflect-name="periodicity">
+                <option _ngcontent-c2="" value="" ng-reflect-value="">Please select a Periodicity</option>
+                <!--bindings={
+  "ng-reflect-ng-for-of": "Weekly,Bi-Weekly,Monthly,Yearl"
+}--><option _ngcontent-c2="" value="Weekly" ng-reflect-value="Weekly"> 
+                        Weekly 
+                </option><option _ngcontent-c2="" value="Bi-Weekly" ng-reflect-value="Bi-Weekly"> 
+                        Bi-Weekly 
+                </option><option _ngcontent-c2="" value="Monthly" ng-reflect-value="Monthly"> 
+                        Monthly 
+                </option><option _ngcontent-c2="" value="Yearly" ng-reflect-value="Yearly"> 
+                        Yearly 
+                </option>
+              </select>
+        </div>
+      </div>
+      <div _ngcontent-c2="" class="form-group form-group-sm row">
+        <label _ngcontent-c2="" class="col-4 col-form-label" for="ledgerProjectedAmount">Projected Amount</label>
+        <div _ngcontent-c2="" class="col-5">
+          <input _ngcontent-c2="" class="form-control form-control-sm ng-untouched ng-pristine ng-valid" formcontrolname="projectedAmount" ng-reflect-name="projectedAmount">
+        </div>
+      </div>
+      <div _ngcontent-c2="" class="form-group form-group-sm row">
+        <label _ngcontent-c2="" class="col-4 col-form-label" for="ledgerActualAmount">Actual Amount</label>
+        <div _ngcontent-c2="" class="col-5">
+          <input _ngcontent-c2="" class="form-control form-control-sm ng-untouched ng-pristine ng-valid" formcontrolname="actualAmount" ng-reflect-name="actualAmount">
+        </div>
+      </div>
+      <div _ngcontent-c2="" class="form-group form-group-sm">
+        <label _ngcontent-c2="" for="ledgerMemo">Memo</label>
+        <div _ngcontent-c2="" class="col-9">
+          <textarea _ngcontent-c2="" class="form-control form-control-sm ng-untouched ng-pristine ng-valid" formcontrolname="memo" rows="3" ng-reflect-name="memo"></textarea>
+        </div>
+      </div>
+      <div _ngcontent-c2="" class="form-group form-group-sm">
+        <button _ngcontent-c2="" class="btn btn-primary" type="submit">Save</button>
+        <button _ngcontent-c2="" class="btn btn-default" type="button">Cancel</button>
+      </div>
+      <pre _ngcontent-c2="">{
+  "id": 0,
+  "projectedAmount": 0,
+  "actualAmount": 0,
+  "memo": null
+}</pre>
+    </div>
+  </form>
+</div></app-ledger-item>
+      </div>
+    </div>
+  </modal-container>

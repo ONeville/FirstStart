@@ -3,3 +3,6 @@
 npm install ngx-bootstrap --save
 
 https://codecraft.tv/
+
+
+          <div class="alert alert-danger" *ngIf="!itemForm.controls['account'].valid && itemForm.controls['account'].touched">Please select an Account</div>

@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -17,6 +19,8 @@ import { LedgerItemsComponent, LedgerItemComponent } from './views';
   ],
   imports: [
     BrowserModule,
+    //FormsModule,
+    ReactiveFormsModule,
     ModalModule.forRoot()
   ],
   providers: [],

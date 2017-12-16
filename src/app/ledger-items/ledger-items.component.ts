@@ -38,8 +38,6 @@ export class LedgerItemsComponent implements OnInit {
     console.log("Saving contact");
     //this.ledger.actualAmount = actualAmount;
     //this.ledger.memo = memo;
-    // model.contacts[idx] = angular.copy(model.selected);
-    // this.itemSelected
     this.reset();
   };
 
@@ -49,12 +47,9 @@ export class LedgerItemsComponent implements OnInit {
   onCollapse(){
     this.expended = false;
   }
-  // public openModal(template: TemplateRef<any>) {
-  //   this.bsModalRef = this.modalService.show(template, { animated: true, keyboard: true, backdrop: true, ignoreBackdropClick: true });
-  // }
 
   editLedger(ledger?:Ledger){
-    this.bsModalRef = this.modalService.show(LedgerItemComponent, { animated: true,class: 'modal-sm', keyboard: true, backdrop: true, ignoreBackdropClick: true });
+    this.bsModalRef = this.modalService.show(LedgerItemComponent, { animated: true, keyboard: true, backdrop: true, ignoreBackdropClick: false });
     this.bsModalRef.content.title = 'Add a Transaction';
     if (ledger) {
       this.bsModalRef.content.title = 'Edit a Ledger Transaction';

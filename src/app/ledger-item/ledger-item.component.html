@@ -1,15 +1,94 @@
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Large modal</h4>
-        <button type="button" class="close pull-right" (click)="modalRef.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-    </div>
+<div class="modal-dialog modal-lg">
+    <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)" novalidate>
+  <div class="modal-header modal-header-sm">
+    <h4 class="modal-title modal-title-sm pull-left">Add a new Ledger Transaction</h4>
+    <button type="button" class="close pull-right" (click)="modalRef.hide()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
+
+    <div class="modal-body">
+      <div class="form-group row">
+        <label for="account" class="col-4 col-form-label">Free text</label>
+        <div class="col-5">
+          <input type="text" class="form-control form-control-sm" formControlName="test" required>
+
+          <div class="form-control-feedback" *ngIf="!itemForm.controls['test'].valid && itemForm.controls['test'].touched">
+              <p >Free text is required</p>
+            </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="account" class="col-4 col-form-label">Account</label>
+        <div class="col-5">
+            <select class="form-control form-control-sm" formControlName="account">
+                <option value="">Please select an Account</option>
+                <option *ngFor="let itm of Accounts"
+                        [value]="itm"> 
+                        {{itm}} 
+                </option>
+              </select>
+        </div>
+      </div>
+      <div class="form-group form-group-sm row">
+        <label for="ledgerCategory" class="col-4 col-form-label">Category</label>
+        <div class="col-5">
+            <select class="form-control form-control-sm" formControlName="category">
+                <option value="">Please select a Category</option>
+                <option *ngFor="let itm of Categories"
+                        [value]="itm"> 
+                        {{itm}} 
+                </option>
+              </select>
+        </div>
+      </div>
+      <div class="form-group form-group-sm row">
+        <label for="ledgerItem" class="col-4 col-form-label">Item</label>
+        <div class="col-5">
+            <select class="form-control form-control-sm" formControlName="item">
+                <option value="">Please select an Item</option>
+                <option *ngFor="let itm of Items"
+                        [value]="itm"> 
+                        {{itm}} 
+                </option>
+              </select>
+        </div>
+      </div>
+      <div class="form-group form-group-sm row">
+        <label for="ledgerPeriodicity" class="col-4 col-form-label">Periodicity</label>
+        <div class="col-5">
+            <select class="form-control form-control-sm" formControlName="periodicity">
+                <option value="">Please select a Periodicity</option>
+                <option *ngFor="let itm of Periodicities"
+                        [value]="itm"> 
+                        {{itm}} 
+                </option>
+              </select>
+        </div>
+      </div>
+      <div class="form-group form-group-sm row">
+        <label for="ledgerProjectedAmount" class="col-4 col-form-label">Projected Amount</label>
+        <div class="col-5">
+          <input class="form-control form-control-sm" formControlName="projectedAmount">
+        </div>
+      </div>
+      <div class="form-group form-group-sm row">
+        <label for="ledgerActualAmount" class="col-4 col-form-label">Actual Amount</label>
+        <div class="col-5">
+          <input class="form-control form-control-sm" formControlName="actualAmount">
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label for="ledgerMemo">Memo</label>
+        <div class="col-9">
+          <textarea class="form-control form-control-sm" formControlName="memo" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <button type="submit" class="btn btn-primary" [disabled]="!itemForm.valid">Save</button>
+        <button type="button" class="btn btn-default" (click)="reset()">Cancel</button>
+      </div>
+      <pre>{{itemForm.value | json}}</pre>
+    </div>
+  </form>
 </div>

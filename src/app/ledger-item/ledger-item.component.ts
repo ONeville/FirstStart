@@ -44,29 +44,53 @@ export class LedgerItemComponent implements OnInit {
   ngOnInit() {
     this.itemForm = new FormGroup({
       id: new FormControl(0),
-      test: new FormControl(Validators.required),
-      account: new FormControl(Validators.required),
-      category: new FormControl(Validators.required),
-      item: new FormControl(Validators.required),
-      projectedAmount: new FormControl(0, Validators.required),
-      actualAmount: new FormControl(0),
-      periodicity: new FormControl(Validators.required),
+      account: new FormControl('', Validators.required),
+      category: new FormControl('', Validators.required),
+      item: new FormControl('', Validators.required),
+      projectedAmount: new FormControl(null, Validators.required),
+      actualAmount: new FormControl(null),
+      periodicity: new FormControl('', Validators.required),
       memo: new FormControl(),
     });
   }
 
-  onEdit(ledger) {
-    this.isEdit = true;
+  onEdit() {
+    if (this.isEdit && this.ledger.id > 0) {
+      this.itemForm = new FormGroup({
+        id: new FormControl(this.ledger.id),
+        account: new FormControl(this.ledger.account, Validators.required),
+        category: new FormControl(this.ledger.category, Validators.required),
+        item: new FormControl(this.ledger.item, Validators.required),
+        projectedAmount: new FormControl(this.ledger.projectedAmount, Validators.required),
+        actualAmount: new FormControl(this.ledger.actualAmount),
+        periodicity: new FormControl(this.ledger.periodicity, Validators.required),
+        memo: new FormControl(this.ledger.memo),
+      });
+    }
   }
 
+  getFromControl(item) {
+    return {
+        id: item.id,
+        account: item.account,
+        category: item.category,
+        item: item.item,
+        projectedAmount: item.projectedAmount,
+        actualAmount: this.ledger.actualAmount,
+        periodicity: this.ledger.periodicity,
+        memo: this.ledger.memo
+      };
+  }
   onSubmit(ledger) {
     console.log('Form submitted --');
-    console.log(ledger.Account);
+    this.modalRef.hide();
+    console.log(ledger.account +'-' + ledger.category);
   }
 
   reset() {
     this.modalRef.hide();
     this.itemForm.reset();
+    console.log('Form reseted --');
   }
 
 }

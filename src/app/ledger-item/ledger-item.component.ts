@@ -15,7 +15,6 @@ export class LedgerItemComponent implements OnInit {
   modalRef: BsModalRef;
   constructor(public bsModalRef: BsModalRef) { 
     this.modalRef = bsModalRef;
-    console.log("Init Item component");
   }
 
   ngOnInit() {

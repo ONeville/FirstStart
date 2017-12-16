@@ -1,63 +1,79 @@
 <!-- <form [FormGroup]="ledgerForm" (ngSubmit)="save(ledgerForm.value)">
 
 
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <form>
-                        <h2 class="text-center py-4 font-bold font-up danger-text">Contact us</h2>
-                        <div class="md-form">
-                            <i class="fa fa-user prefix grey-text"></i>
-                            <input type="text" id="form1" class="form-control">
-                            <label for="form1">Your name</label>
+ 
+</form> -->
+<div class="modal-dialog modal-lg">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{title}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="!ledger">
+                    s="panel panel-default">
+                    <div class="panel-body form-horizontal payment-form">
+                        <div class="form-group">
+                            <label for="concept" class="col-sm-3 control-label">Concept</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="concept" name="concept">
+                            </div>
                         </div>
-                        <div class="md-form">
-                            <i class="fa fa-envelope prefix grey-text"></i>
-                            <input type="text" id="form2" class="form-control">
-                            <label for="form2">Your email</label>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="description" name="description">
+                            </div>
                         </div>
-                        <div class="md-form">
-                            <i class="fa fa-tag prefix grey-text"></i>
-                            <input type="text" id="form3" class="form-control">
-                            <label for="form3">Subject</label>
+                        <div class="form-group">
+                            <label for="amount" class="col-sm-3 control-label">Amount</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" id="amount" name="amount">
+                            </div>
                         </div>
-                        <div class="md-form">
-                            <i class="fa fa-pencil prefix grey-text"></i>
-                            <textarea type="text" id="form4" class="md-textarea" style="height: 100px"></textarea>
-                            <label for="form4">Your message</label>
+                        <div class="form-group">
+                            <label for="status" class="col-sm-3 control-label">Status</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="status" name="status">
+                                    <option>Paid</option>
+                                    <option>Unpaid</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <button class="btn btn-outline-primary btn-lg">Send</button>
-                            <button class="btn btn-outline-danger btn-lg">cancel</button>
+                        <div class="form-group">
+                            <label for="date" class="col-sm-3 control-label">Date</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="date" name="date">
+                            </div>
                         </div>
-                    </form>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-right">
+                                <button type="button" class="btn btn-default preview-add-button">
+                                    <span class="glyphicon glyphicon-plus"></span> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</form> -->
+            <div *ngIf="ledger">
+                <h3>Cool - Hello world</h3>
+                <p>account : {{ledger.account}}</p>
+                <p>category : {{ledger.category}}</p>
+                <p>item : {{ledger.item}}</p>
+                <p>projectedAmount : {{ledger.projectedAmount}}</p>
+                <p>actualAmount : {{ledger.actualAmount}}</p>
+                <p>periodicity : {{ledger.periodicity}}</p>
 
-<div class="modal-header">
-    <h4 class="modal-title pull-left">{{title}}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-      <h3>Cool - Hello world</h3>
-      <p>account : {{ledger.account}}</p>
-      <p>category : {{ledger.category}}</p>
-      <p>item : {{ledger.item}}</p>
-      <p>projectedAmount : {{ledger.projectedAmount}}</p>
-      <p>actualAmount : {{ledger.actualAmount}}</p>
-      <p>periodicity : {{ledger.periodicity}}</p>
-      
-      <p>memo : {{ledger.memo}}</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
-  </div>
+                <p>memo : {{ledger.memo}}</p>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+        </div>
+</div>
 
 
 

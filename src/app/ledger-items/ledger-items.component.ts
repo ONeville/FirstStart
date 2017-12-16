@@ -54,7 +54,7 @@ export class LedgerItemsComponent implements OnInit {
   // }
 
   editLedger(ledger?:Ledger){
-    this.bsModalRef = this.modalService.show(LedgerItemComponent, { animated: true, keyboard: true, backdrop: true, ignoreBackdropClick: true });
+    this.bsModalRef = this.modalService.show(LedgerItemComponent, { animated: true,class: 'modal-sm', keyboard: true, backdrop: true, ignoreBackdropClick: true });
     this.bsModalRef.content.title = 'Add a Transaction';
     if (ledger) {
       this.bsModalRef.content.title = 'Edit a Ledger Transaction';

@@ -1,23 +1,15 @@
 <div class="modal-header modal-header-sm">
-  <h4 class="modal-title modal-title-sm pull-left">Add a new Ledger Transaction</h4>
+  <h4 class="modal-title modal-title-sm pull-left">{{title}} Ledger Transaction</h4>
   <button type="button" class="close pull-right" (click)="modalRef.hide()" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<!-- <div class="modal-body">
-    <div class="form-group row">
-      <label for="account" class="col-4 col-form-label">Free text</label>
-      <div class="col-5">
-        <input type="text" class="form-control form-control-sm">
-      </div>
-    </div>
-  </div> -->
 <div class="modal-body modal-legder">
   <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)" novalidate>
 
     <div class="form-group form-group-sm row">
-      <label for="account" class="col-4 col-form-label">Account</label>
       <div class="col-5">
+        <label for="account" class="col-form-label">Account</label>
         <select class="form-control form-control-sm" formControlName="account">
           <option value="">Please select an Account</option>
           <option *ngFor="let itm of Accounts" [value]="itm">
@@ -25,32 +17,8 @@
           </option>
         </select>
       </div>
-    </div>
-    <div class="form-group form-group-sm row">
-      <label for="ledgerCategory" class="col-4 col-form-label">Category</label>
       <div class="col-5">
-        <select class="form-control form-control-sm" formControlName="category">
-          <option value="">Please select a Category</option>
-          <option *ngFor="let itm of Categories" [value]="itm">
-            {{itm}}
-          </option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group form-group-sm row">
-      <label for="ledgerItem" class="col-4 col-form-label">Item</label>
-      <div class="col-5">
-        <select class="form-control form-control-sm" formControlName="item">
-          <option value="">Please select an Item</option>
-          <option *ngFor="let itm of Items" [value]="itm">
-            {{itm}}
-          </option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group form-group-sm row">
-      <label for="ledgerPeriodicity" class="col-4 col-form-label">Periodicity</label>
-      <div class="col-5">
+          <label for="ledgerPeriodicity" class="col-form-label">Periodicity</label>
         <select class="form-control form-control-sm" formControlName="periodicity">
           <option value="">Please select a Periodicity</option>
           <option *ngFor="let itm of Periodicities" [value]="itm">
@@ -60,26 +28,46 @@
       </div>
     </div>
     <div class="form-group form-group-sm row">
-      <label for="ledgerProjectedAmount" class="col-4 col-form-label">Projected Amount</label>
       <div class="col-5">
-        <input class="form-control form-control-sm" formControlName="projectedAmount">
+          <label for="ledgerCategory" class="col-form-label">Category</label>
+        <select class="form-control form-control-sm" formControlName="category" (ngModelChange)="onChange($event)">
+          <option value="">Please select a Category</option>
+          <option *ngFor="let itm of Categories" [value]="itm.id">
+            {{itm.description}}
+          </option>
+        </select>
+      </div>
+      <div class="col-5">
+          <label for="ledgerItem" class="col-form-label">Item</label>
+        <select class="form-control form-control-sm" formControlName="item">
+          <option value="">Please select an Item</option>
+          <option *ngFor="let itm of Items" [value]="itm.id">
+              {{itm.description}}
+          </option>
+        </select>
       </div>
     </div>
     <div class="form-group form-group-sm row">
-      <label for="ledgerActualAmount" class="col-4 col-form-label">Actual Amount</label>
       <div class="col-5">
+          <label for="ledgerProjectedAmount" class="col-form-label">Projected Amount</label>
+        <input class="form-control form-control-sm" formControlName="projectedAmount">
+      </div>
+      <div class="col-5">
+          <label for="ledgerActualAmount" class="col-form-label">Actual Amount</label>
         <input class="form-control form-control-sm" formControlName="actualAmount">
       </div>
     </div>
-    <div class="form-group form-group-sm">
-      <label for="ledgerMemo">Memo</label>
-      <div class="col-9">
+    <div class="form-group form-group-sm row">
+      <div class="col-10">
+          <label for="ledgerMemo">Memo</label>
         <textarea class="form-control form-control-sm" formControlName="memo" rows="3"></textarea>
       </div>
     </div>
-    <div class="form-group form-group-sm">
-      <button type="submit" class="btn btn-primary" [disabled]="!itemForm.valid">Save</button>
-      <button type="button" class="btn btn-default" (click)="reset()">Cancel</button>
+    <div class="form-group form-group-sm row">
+        <div class="col-10 justify-content-end">
+      <button type="submit" class="btn btn-primary col-5" [disabled]="!itemForm.valid">Save</button>
+      <button type="button" class="btn btn-default col-3" (click)="reset()">Cancel</button>
+        </div>
     </div>
   </form>
 </div>

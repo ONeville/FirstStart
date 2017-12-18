@@ -6,6 +6,7 @@ import { ModalModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { GroupByPipe } from './groupby.pipe';
+import { ModalDataService } from './modalDataService';
 
 import { LedgerItemsComponent, LedgerItemComponent } from './views';
 
@@ -19,11 +20,12 @@ import { LedgerItemsComponent, LedgerItemComponent } from './views';
   ],
   imports: [
     BrowserModule,
-    //FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    ModalDataService
+  ],
   entryComponents: [
     LedgerItemComponent
   ],

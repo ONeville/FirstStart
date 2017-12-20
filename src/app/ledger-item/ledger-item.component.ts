@@ -22,19 +22,7 @@ export class LedgerItemComponent implements OnInit {
     'Credit Card - Ariel',
   ];
   Categories: Category[] = Category.getData();
-  // string[] = [
-  //   'Housing',
-  //   'Transportation',
-  //   'Entaitement',
-  // ];
   Items: Item[];
-  // string[] = [
-  //   'Internet',
-  //   'Movies',
-  //   'Foods',
-  //   'Telepone',
-  //   'Tither'
-  // ];
   Periodicities: string[] = [
     'Weekly',
     'Bi-Weekly',
@@ -48,31 +36,23 @@ export class LedgerItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.isEdit && this.ledger) {
-      this.itemForm = new FormGroup({
-        id: new FormControl(this.ledger.id),
-        account: new FormControl(this.ledger.account, Validators.required),
-        categoryId: new FormControl(this.ledger.categoryId, Validators.required),
-        category: new FormControl(this.ledger.category, Validators.required),
-        itemId: new FormControl(this.ledger.itemId, Validators.required),
-        item: new FormControl(this.ledger.item, Validators.required),
-        projectedAmount: new FormControl(this.ledger.projectedAmount, Validators.required),
-        actualAmount: new FormControl(this.ledger.actualAmount),
-        periodicity: new FormControl(this.ledger.periodicity, Validators.required),
-        memo: new FormControl(this.ledger.memo),
-      });
-    }else{
-      this.itemForm = new FormGroup({
-        id: new FormControl(0),
-        account: new FormControl('', Validators.required),
-        category: new FormControl('', Validators.required),
-        item: new FormControl('', Validators.required),
-        projectedAmount: new FormControl(null, Validators.required),
-        actualAmount: new FormControl(null),
-        periodicity: new FormControl('', Validators.required),
-        memo: new FormControl(),
-      });
+
+    if(this.ledger && this.ledger.categoryId){
+      this.Items = Item.getData().filter(x=>x.categoryId == this.ledger.categoryId);
     }
+
+    this.itemForm = new FormGroup({
+      id: new FormControl((this.ledger && this.ledger.id) || 0),
+      account: new FormControl((this.ledger && this.ledger.account) || '', [Validators.required, Validators.minLength(1)]),
+      // categoryId: new FormControl((this.ledger && this.ledger.categoryId) || 0, [Validators.required, Validators.minLength(1)]),
+      category: new FormControl((this.ledger && this.ledger.categoryId) || '', [Validators.required, Validators.minLength(1)]),
+      // itemId: new FormControl((this.ledger && this.ledger.itemId) || 0, [Validators.required, Validators.minLength(1)]),
+      item: new FormControl((this.ledger && this.ledger.itemId) || '', [Validators.required, Validators.minLength(1)]),
+      projectedAmount: new FormControl((this.ledger && this.ledger.projectedAmount) || null, Validators.required),
+      actualAmount: new FormControl((this.ledger && this.ledger.actualAmount) || null),
+      periodicity: new FormControl((this.ledger && this.ledger.periodicity) || '', [Validators.required, Validators.minLength(1)]),
+      memo: new FormControl((this.ledger && this.ledger.memo) || ''),
+    });
   }
 
   initParams(params) {
@@ -110,4 +90,7 @@ export class LedgerItemComponent implements OnInit {
     console.log('Form reseted --');
   }
 
+  disable(itemForm){
+    return itemForm.valid
+  }
 }

@@ -1,11 +1,5 @@
-<div class="alert alert-sm alert-primary" role="alert">
-    <a (click)="onExpend()" class="bt-control">
-        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
-    </a>
-    <a (click)="onCollapse()" class="bt-control">
-        <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
-    </a>
-  </div>
+<h2>Ledger Account Transactions</h2>
+<hr>
 <table class="table table-sm">
   <thead class="thead-dark">
     <tr>
@@ -35,8 +29,8 @@
       <th colspan="4">{{item.key}}</th>
       <th class="grouped debit-amount">{{item.totalProjected | currency:"$":0}}</th>
       <th class="grouped credit-amount">{{item.totalActual | currency:"$":0}}</th>
-      <th *ngIf="(item.totalProjected - item.totalActual) > 0" class="grouped debit-amount">{{item.totalProjected - item.totalActual | currency:"$":0}}</th>
-      <th *ngIf="(item.totalProjected - item.totalActual) <= 0" class="grouped credit-amount">{{item.totalProjected - item.totalActual | currency:"$":0}}</th>
+      <th *ngIf="(item.totalProjected - item.totalActual) >= 0" class="grouped debit-amount">{{item.totalProjected - item.totalActual | currency:"$":0}}</th>
+      <th *ngIf="(item.totalProjected - item.totalActual) < 0" class="grouped credit-amount">{{item.totalProjected - item.totalActual | currency:"$":0}}</th>
     </tr>
     <!-- || item.ledgers.length == 1 -->
     <ng-container *ngIf="item.expanded || expended">
